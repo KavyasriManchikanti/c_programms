@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main()
+{
+    char str1[10]="-10";
+    char str2[10]="10";
+    int n1=1,n2=1;
+    int p1=0;int p2=0;
+    if(str1[0]=='-'){
+        n1=-1;
+        for(int i=1;str1[i]!='\0';i++){
+            p1=p1*10+str1[i]-48;
+       }
+    }else{
+        for(int i=0;str1[i]!='\0';i++){
+            p1=p1*10+str1[i]-48;
+       }
+    }
+    if(str2[0]=='-'){
+        n2=-1;
+        for(int i=1;str2[i]!='\0';i++){
+            p1=p1*10+str1[i]-48;
+       }
+    }else{
+    for(int i=0;str2[i]!='\0';i++){
+        p2=p2*10+str2[i]-48;
+    }
+    } 
+    int result=(n1*p1)*(n2*p2);
+    printf("%d",result);
+    return 0;
+}
