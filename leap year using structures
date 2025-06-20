@@ -1,0 +1,22 @@
+#include <stdio.h>
+struct node{
+        int date;
+        int month;
+        int year;
+    };
+int main()
+{
+    struct node s1;
+    scanf("%d",&s1.date);
+    scanf("%d",&s1.month);
+    scanf("%d",&s1.year);
+    if(s1.year%4==0 && s1.year%100!=0){
+        printf("leap year");
+    }else if(s1.year%400==0){
+        printf("leap year");
+    }
+    else{
+        printf("not a leap year");
+    }
+    return 0;
+}
