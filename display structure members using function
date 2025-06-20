@@ -1,0 +1,19 @@
+#include <stdio.h>
+struct node{
+    int rollno;
+    float marks;
+    char name[10];
+};
+void function(struct node s){
+    printf("%d\n",s.rollno);
+    printf("%.1f\n",s.marks);
+    printf("%s",s.name);
+    
+}
+int main()
+{
+    struct node s={88,8.1,"kavya"};
+    function(s);
+
+    return 0;
+}
