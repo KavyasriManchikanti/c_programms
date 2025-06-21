@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+};
+struct node *head=NULL,*temp=NULL;
+void push(int d){
+    struct node *newnode=(struct node *)malloc(sizeof(struct node));
+    newnode->data=d;
+    newnode->next=NULL;
+    if(head==NULL){
+        head=newnode;
+        temp=head;
+    }else{
+        temp->next=newnode;
+        temp=temp->next;
+    }
+}
+void display(){
+    struct node *temp=head;
+    while(temp){
+        printf("%d\t",temp->data);
+        temp=temp->next;
+    }
+    printf("\n");
+}
+void count(int d){
+    int c=0;
+    struct node *temp=head;
+    while(temp!=NULL){
+        if(temp->data==d){
+            c++;
+        }
+        temp=temp->next;
+    }
+    printf("%d",c);
+}
+int main()
+{
+    for(int i=0;i<5;i++){
+        int n;
+        scanf("%d",&n);
+        push(n);
+    }
+    count(20);
+    return 0;
+}
