@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+};
+struct node * head=NULL;
+void insert(int d){
+    struct node *newnode,*temp;
+    newnode=(struct node *)malloc(sizeof(struct node));
+    newnode->data=d;
+    newnode->next=NULL;
+    if(head==NULL){
+        head=newnode;
+        temp=head;
+    }
+    else{
+        temp->next=newnode;
+        temp=temp->next;
+    }
+}
+void display(){
+    struct node *temp=head;
+    while(temp){
+        printf("%d->",temp->data);
+        temp=temp->next;
+    }
+    printf("\n");
+}
+int count(){
+    struct node * temp=head;
+    int c=0;
+    while(temp){
+        temp=temp->next;
+        c++;
+    }
+    return c;
+    
+}
+void delete_from_end(int k){
+    int t=count();
+    int index=t-k;
+    if(index==0){
+        printf("%d\n",head->data);
+        head=head->next;
+    }
+    else{
+        int i=0;
+        struct node *temp=head;
+        struct node *prev=NULL;
+        while(i<index && temp!=NULL){
+            prev=temp;
+            temp=temp->next;
+            i++;
+        }
+        printf("%d\n",temp->data);
+        prev->next=temp->next;
+    }
+    display();
+}
+int main()
+{
+    insert(35);
+    insert(15);
+    insert(4);
+    insert(20);
+    display();
+    delete_from_end(4);
+    
+    return 0;
+}
