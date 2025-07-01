@@ -118,3 +118,28 @@ int main()
     }
     return 0;
 }
+//counting duplicate elements without using extra array
+#include <stdio.h>
+
+int main()
+{
+    int arr[6]={1,2,3,3,2,3};
+    int c;
+    for(int i=0;i<6;i++){
+        if(arr[i]==-1){
+            continue;
+        }
+        c=1;
+        for(int j=i+1;j<6;j++){
+            if(arr[i]==arr[j]){
+                c++;
+                arr[j]=-1;
+            }
+        }
+        if(c>1){
+            printf("%d is %d times\n",arr[i],c);
+        }
+    }
+
+    return 0;
+}
