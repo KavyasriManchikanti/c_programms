@@ -143,3 +143,77 @@ int main()
 
     return 0;
 }
+//sum of all elements of the array
+#include <stdio.h>
+
+int main()
+{
+    int arr[5]={1,2,3,4,5};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int sum=0;
+    for(int i=0;i<n;i++){
+        sum+=arr[i];
+    }
+    printf("%d",sum);
+
+    return 0;
+}
+//copy the elements of one array into another array
+int main()
+{
+    int arr[5]={1,2,3,4,5};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int new[5];
+    int sum=0;
+    for(int i=0;i<n;i++){
+        new[i]=arr[i];
+    }
+    for(int i=0;i<n;i++){
+        printf("%d ",new[i]);
+    }
+    
+
+    return 0;
+}
+// to merge two arrays of the same size sorted in descending order using pointers
+#include <stdio.h>
+#include<stdlib.h>
+void function(int *ptr,int n){
+    for(int i=0;i<n-1;i++){
+        for(int j=0;j<n-1;j++){
+        if(*(ptr+j)<*(ptr+j+1)){
+            int temp=*(ptr+j);
+            *(ptr+j)=*(ptr+j+1);
+            *(ptr+j+1)=temp;
+        }
+        }
+    }
+}
+
+int main()
+{
+    int *ptr1;
+    int *ptr2;
+    int n;
+    scanf("%d",&n);
+    ptr1 = (int *)malloc(n * sizeof(int));
+    ptr2 = (int *)malloc(n * sizeof(int));
+    for(int i=0;i<n;i++){
+        scanf("%d",(ptr1+i));
+    }
+    for(int i=0;i<n;i++){
+        scanf("%d",(ptr2+i));
+    }
+    int *temp=realloc(ptr1,n*sizeof(int));
+    ptr1=temp;
+    int j=0;
+    for(int i=n;i<(n*2);i++){
+        *(ptr1+i)=*(ptr2+j);
+        j++;
+    }
+    function(ptr1,n*2);
+    for(int i=0;i<n*2;i++){
+        printf("%d ",*(ptr1+i));
+    }
+    
+}
