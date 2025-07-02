@@ -217,3 +217,52 @@ int main()
     }
     
 }
+//max and min in an array
+#include <stdio.h>
+
+int main() {
+    int n, i;
+    int arr[100];  
+    int max, min;
+    scanf("%d", &n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    max = arr[0];
+    min = arr[0];
+    for (i = 1; i < n; i++) {
+        if (arr[i] > max)
+            max = arr[i];
+        if (arr[i] < min)
+            min = arr[i];
+    }
+    printf("Maximum element: %d\n", max);
+    printf("Minimum element: %d\n", min);
+
+    return 0;
+}
+//Move all zeros to end of array
+#include <stdio.h>
+
+int main()
+{
+    int arr[]={1, 2, 0, 4, 3, 0, 5, 0};
+    int zero=0;int c=0;
+    for(int i=0;i<8;i++){
+        if(arr[i]==0){
+            zero++;
+        }
+        else{
+            arr[c++]=arr[i];
+        }
+        
+    }
+    for(int i=0;i<zero;i++){
+        arr[c++]=0;
+    }
+    for(int i=0;i<8;i++){
+        printf("%d ",arr[i]);
+    }
+    return 0;
+}
+
