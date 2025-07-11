@@ -996,8 +996,115 @@ int main(){
 ```
 ### 38. Print Ascii Values using Array in C
 ```c
+#include <stdio.h>
+
+int main() {
+    char arr[] = {'A', 'B', 'C', 'D', 'E'};  
+    int n = sizeof(arr) / sizeof(arr[0]);
+    for (int i = 0; i < n; i++) {
+        printf("%c\t%d\n", arr[i], arr[i]);
+    }
+
+    return 0;
+}
+```
+### 39. C Program To Find Two Elements whose Sum is Closest to Zero
+```c
+#include <stdio.h>
+
+int main()
+{
+   int arr[6]={1, 60, -10, 70, -80, 85};
+   int n1,n2;
+   int min=arr[0]+arr[1];
+   for(int i=0;i<6;i++){
+       for(int j=i+1;j<6;j++){
+           int sum=0;
+            sum=arr[i]+arr[j];
+            if(sum<0){
+                sum=-(sum);
+            }
+            if(sum<min)
+               n1=arr[i];
+               n2=arr[j];
+           }
+       }
+   
+   printf("%d\n%d",n1,n2);
+
+    return 0;
+}
+```
+### 40. C Program to Find Union and Intersection of Two Arrays
+```c
 
 ```
+### 41. C Program to Print all Non Repeated Elements in an Array
+```c
+#include<stdio.h>
+int main(){
+    int arr[6]={1,2,3,4,5,5};
+    int new[100];
+    int size=0;
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int c;
+    int max=0;
+    int ele;
+    for(int i=0;i<n;i++){
+        c=0;
+        for(int j=0;j<n;j++){
+            if(arr[i]==arr[j]){
+                c++;
+            }
+        }
+        int flag=0;
+        if(c==1){
+            for(int k=0;k<size;k++){
+                flag=0;
+                if(new[k]==arr[i]){
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==0){
+            new[size++]=arr[i];
+        }
+        }
+    }
+    for(int i=0;i<size;i++){
+        printf("%d ",new[i]);
+    }
+    return 0;
+}
+```
+### 42. Write a program to write all the elements of 2-D Array into !-D Array in row wise.
+```c
+#include<stdio.h>
+int main(){
+    int r=3;
+    int c=3;
+    int arr[r][c];
+    int n=r*c;
+    int new[n];
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            scanf("%d",&arr[i][j]);
+        }
+    }
+    int k=0;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<c;j++){
+            new[k++]=arr[i][j];
+        }
+        
+    }
+    for(int i=0;i<n;i++){
+        printf("%d ",new[i]);
+    }
+    return 0;
+}
+```
+
 
 
 
