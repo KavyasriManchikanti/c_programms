@@ -1104,6 +1104,50 @@ int main(){
     return 0;
 }
 ```
+### 43. Write a program to write whether a matrix is symmetric or not
+```c
+#include<stdio.h>
+int main(){
+    int r=3;
+    int c=3;
+    int arr[r][c];
+    int new[r][c];
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            scanf("%d",&arr[i][j]);
+        }
+    }
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            new[i][j]=arr[j][i];
+        }
+        
+    }
+    int flag=0;
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(arr[i][j]!=new[i][j]){
+                flag=1;
+                break;
+            }
+            if(flag==1){
+                break;
+            }
+        }
+        
+    }
+    if(flag==1){
+        printf("not symmetric");
+    }
+    else
+    printf("symmetric");
+    return 0;
+}
+```
+### 44. Write a program to check if elements of an array are distinct or not.
+```c
+
+```
 
 
 
