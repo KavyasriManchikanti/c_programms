@@ -749,9 +749,12 @@ int main()
 ```
 ### 28. Write a program in C to find the majority element of an array.
 ```c
+
 #include<stdio.h>
 int main(){
-    int arr[6]={1,2,3,4,4,4};
+    int arr[6]={1,2,4,4,4,4};
+    int new[100];
+    int size=0;
     int n=sizeof(arr)/sizeof(arr[0]);
     int c;
     int max=0;
@@ -763,14 +766,239 @@ int main(){
                 c++;
             }
         }
-        if(c>max){
-            max=c;
-            ele=arr[i];
+        int flag=0;
+        if(c>(n/2)){
+            for(int k=0;k<size;k++){
+                flag=0;
+                if(new[k]==arr[i]){
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==0){
+            new[size++]=arr[i];
+        }
         }
     }
-    printf("%d is highest",ele);
+    for(int i=0;i<size;i++){
+        printf("%d",new[i]);
+    }
+    return 0;
 }
 ```
+### 29. Write a program in C to find the missing number in a given array. There are no duplicates in
+the list.
+```c
+#include<stdio.h>
+int main(){
+    int arr[50];
+    int n;
+    scanf("%d",&n);
+    for(int i=0;i<n;i++){
+        scanf("%d",&arr[i]);
+    }
+    int max=arr[0];
+    int min=arr[0];
+    for(int i=0;i<n;i++){
+        if(arr[i]>max){
+            max=arr[i];
+        }
+        if(arr[i]<min){
+            min=arr[i];
+        }
+    }
+    int flag;
+    for(int i=min;i<max;i++){
+        flag=0;
+        for(int j=0;j<n;j++){
+            if(arr[j]==i){
+                flag=1;
+            }
+        }
+        if(flag==0){
+            printf("missing number=%d",i);
+        }
+    }
+    
+    return 0;
+}
+```
+### 30. Write a program in C to find the two repeating elements in a given array.
+```c
+#include<stdio.h>
+int main(){
+    int arr[6]={1,2,1,2,2,3};
+    int new[100];
+    int size=0;
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int c;
+    int max=0;
+    int ele;
+    for(int i=0;i<n;i++){
+        c=0;
+        for(int j=0;j<n;j++){
+            if(arr[i]==arr[j]){
+                c++;
+            }
+        }
+        int flag=0;
+        if(c==2){
+            for(int k=0;k<size;k++){
+                flag=0;
+                if(new[k]==arr[i]){
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==0){
+            new[size++]=arr[i];
+        }
+        }
+    }
+    for(int i=0;i<size;i++){
+        printf("%d ",new[i]);
+    }
+    return 0;
+}
+```
+### 31. Write a program to check if a given element is present in an array.
+```c
+#include<stdio.h>
+int main(){
+    int arr[5]={1,2,3,4,5};
+    int n;
+    scanf("%d",&n);
+    int flag=0;
+    for(int i=0;i<n;i++){
+        if(arr[i]==n){
+            flag=1;
+            break;
+        }
+    }
+    if(flag==1){
+        printf("given element is present");
+    }else{
+        printf("not present");
+    }
+    return 0;
+}
+```
+### 32. Create a function to calculate the average of elements in an array
+```c
+#include<stdio.h>
+int avg(int *ptr,int n){
+    int sum;
+    for(int i=0;i<n;i++){
+        sum+=*(ptr+i);
+    }
+    return sum/n;
+}
+int main(){
+    int arr[5]={1,2,3,4,5};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int a=avg(arr,n);
+    printf("%d",a);
+    return 0;
+}
+```
+### 33. Write a program to count the number of even and odd elements in an array.
+```c
+#include<stdio.h>
+int main(){
+    int arr[5]={1,2,3,4,5};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int e=0;int o=0;
+    for(int i=0;i<n;i++){
+        if(arr[i]%2==0){
+            e++;
+        }else{
+            o++;
+        }
+    }
+    printf("even count=%d\n",e);
+    printf("odd count=%d\n",o);
+    return 0;
+}
+```
+### 34. Implement a function to reverse the elements of an array.
+```c
+#include<stdio.h>
+void func(int *ptr,int s,int e){
+    while(s<e){
+        int temp=*(ptr+s);
+        *(ptr+s)=*(ptr+e);
+        *(ptr+e)=temp;
+        s++;
+        e--;
+    }
+    
+}
+int main(){
+    int arr[5]={1,2,3,4,5};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    func(arr,0,n-1);
+    for(int i=0;i<n;i++){
+        printf("%d ",arr[i]);
+    }
+    return 0;
+}
+```
+### 35. Implement a function to delete an element at a specific position in an array.
+```c
+#include<stdio.h>
+void func(int *ptr,int n,int p){
+    for(int i=0;i<n;i++){
+        if(i==p){
+            for(int j=i;j<n;j++){
+                *(ptr+j)=*(ptr+j+1);
+            }
+        }
+    }
+    
+}
+int main(){
+    int arr[5]={1,2,3,4,5};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int p;
+    scanf("%d",&p);
+    func(arr,n,p);
+    for(int i=0;i<n-1;i++){
+        printf("%d ",arr[i]);
+    }
+    return 0;
+}
+```
+### 36. Write a function to find the product of all elements in an array.
+```c
+#include<stdio.h>
+int main(){
+    int arr[5]={1,2,3,4,5};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int p=1;
+    for(int i=0;i<n;i++){
+        p=p*arr[i];
+    }
+    printf("%d",p);
+    return 0;
+}
+```
+### 37. Print Square of Array Elements in C
+```c
+#include<stdio.h>
+int main(){
+    int arr[5]={1,2,3,4,5};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    for(int i=0;i<n;i++){
+        printf("%d  ",arr[i]*arr[i]);
+    }
+    return 0;
+}
+```
+### 38. Print Ascii Values using Array in C
+```c
+
+```
+
 
 
 
