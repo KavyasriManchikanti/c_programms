@@ -1200,7 +1200,305 @@ int main()
 ```
 ### 46.Write a program to find out whether a square matrix is symmetric or not. A square matrix is
 ### symmetric if the transpose of the matrix is equal to the matrix.
+```c
+#include<stdio.h>
+int main(){
+    int r=2;
+    int c=2;
+    int arr[r][c];
+    int new[r][c];
+    int flag=0;
+    
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            scanf("%d",&arr[i][j]);
+        }
+    }
+    if(r==c){
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            new[i][j]=arr[j][i];
+        }
+        
+    }
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(arr[i][j]!=new[i][j]){
+                flag=1;
+                break;
+            }
+            
+        }if(flag==1){
+                break;
+            }
+        
+    }
+    if(flag==1){
+        printf("not symmetric");
+    }
+    else{
+       printf("symmetric");
+    }}
+    else{
+        printf("not a square matrix");
+    }
+    return 0;
+}
+```
+### 47.Write a recursive function to find the sum of all even numbers in an array.
+```c
+#include <stdio.h>
 
+int sumeven(int arr[], int n) {
+    if (n == 0)
+        return 0;
+    if (arr[n - 1] % 2 == 0)
+        return arr[n - 1] + sumeven(arr, n - 1);
+    else
+        return sumeven(arr, n - 1);
+}
+
+int main() {
+    int arr[] = {2, 5, 8, 3, 10, 7};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int result = sumeven(arr, n);
+    printf("sum of even numbers: %d\n", result);
+    return 0;
+}
+```
+### 48.Write a recursive function that finds the sum of all elements of an array by repeatedly
+### partitioning it into two almost equal parts.
+```c
+#include <stdio.h>
+
+int sumDivide(int arr[], int start, int end) {
+    if (start > end)
+        return 0;
+    if (start == end)
+        return arr[start];
+
+    int mid = (start + end) / 2;
+
+    int leftSum = sumDivide(arr, start, mid);
+    int rightSum = sumDivide(arr, mid + 1, end);
+
+    return leftSum + rightSum;
+}
+
+int main() {
+    int arr[] = {3, 5, 7, 2, 8, 4};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    int total = sumDivide(arr, 0, n - 1);
+
+    printf("Sum of all elements: %d\n", total);
+    return 0;
+}
+
+```
+### 49.Write a recursive function to reverse the elements of an array.
+```c
+#include <stdio.h>
+
+void reversearray(int arr[], int start, int end) {
+    if (start >= end)
+        return;
+
+    int temp = arr[start];
+    arr[start] = arr[end];
+    arr[end] = temp;
+
+    reversearray(arr, start + 1, end - 1);
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    reversearray(arr, 0, n - 1);
+
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+
+    return 0;
+}
+
+```
+### 50.Write a recursive function to find whether the elements of an array are in strict ascending
+### order or not.
+```c
+#include <stdio.h>
+
+int strictascending(int arr[], int n) {
+    if (n == 1)
+        return 1;
+
+    if (arr[n - 2] >= arr[n - 1])
+        return 0;
+
+    return strictascending(arr, n - 1);
+}
+
+int main() {
+    int arr1[] = {1, 3, 5, 7};
+    int arr2[] = {1, 2, 2, 4};
+    int n1 = sizeof(arr1) / sizeof(arr1[0]);
+    int n2 = sizeof(arr2) / sizeof(arr2[0]);
+
+    if (strictascending(arr1, n1))
+        printf("arr1 is in strict ascending order.\n");
+    else
+        printf("arr1 is not in strict ascending order.\n");
+
+    if (strictascending(arr2, n2))
+        printf("arr2 is in strict ascending order.\n");
+    else
+        printf("arr2 is not in strict ascending order.\n");
+
+    return 0;
+}
+
+```
+### 51.Write a program to find the sum of rows and columns of a 2-d array and store the sums in
+### the same array.
+```c
+#include <stdio.h>
+
+int main() {
+    int r = 3, c = 3;
+    int arr[r+1][c+1]; 
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            scanf("%d", &arr[i][j]);
+        }
+    }
+    for (int i = 0; i < r; i++) {
+        arr[i][c] = 0;
+        for (int j = 0; j < c; j++) {
+            arr[i][c] += arr[i][j];
+        }
+    }
+    for (int j = 0; j < c; j++) {
+        arr[r][j] = 0;
+        for (int i = 0; i < r; i++) {
+            arr[r][j] += arr[i][j];
+        }
+    }
+    arr[r][c] = 0;
+    for (int i = 0; i < r; i++) {
+        arr[r][c] += arr[i][c];
+    }
+    for (int i = 0; i <= r; i++) {
+        for (int j = 0; j <= c; j++) {
+            printf("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+```
+### 51.In the previous problem, we have rotated the array to the left by one element. Now modify
+### the previous program so that we can rotate the array by any number of elements. For example
+
+### when we rotate the array by 3 elements the result would be-
+### 1 2 3 4 5 6 7 8 9 -> 4 5 6 7 8 9 1 2 3
+```c
+#include <stdio.h>
+void function(int arr[9],int n,int k){
+    int j;
+    for(int i=0;i<k;i++){
+        int fir=arr[0];
+        for( j=1;j<n;j++){
+            arr[j-1]=arr[j];
+            }
+            arr[j-1]=fir;
+        }
+    }
+int main()
+{
+    int arr[9]={3, 1, 6, 2, 5, 8, 9, 4, 7};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int i;
+    int k;
+    scanf("%d",&k);
+    function(arr,n,k);
+    for (int i = 0; i < n; i++) {
+        printf("%d\t", arr[i]);
+    }
+    return 0;
+}
+```
+### 52. Write a program to partition an array such that all the
+
+### negative numbers are on the left side of the array and positive numbers on the right side.
+```c
+#include <stdio.h>
+int main()
+{
+    int arr[6]={1,-1,3,-6,5,4};
+    int s=0;
+    int n=(sizeof(arr)/sizeof(arr[0]));
+    int e=n-1;
+    while(s<e){
+        if(arr[s]<0){
+            s++;
+        }else if(arr[e]>0){
+            e--;
+        }else{
+            int temp=arr[s];
+            arr[s]=arr[e];
+            arr[e]=temp;
+            s++;
+            e--;
+        }
+    }
+    for(int i=0;i<n;i++){
+        printf("%d ",arr[i]);
+    }
+
+    return 0;
+}
+```
+### 53.Write a program to create an array next_ge for an unsorted array arr containing n elements
+### such that next_ge[i] = next greater element of arr [1] in array arr i.e. first greater element on
+### the right of arr[i]. -1 if no such element exists.
+
+### Example- Arr : 3 1 6 2 5 8 9 4 7
+###  next_ge : 6 6 8 5 8 9 -1 7 -1
+```c
+#include <stdio.h>
+int main()
+{
+    int arr[9]={3, 1 ,6 ,2 ,5 ,8 ,9 ,4, 7};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int m;int flag;int i;
+    for( i=0;i<n-1;i++){
+        m=-1;flag=0;
+        for(int j=i+1;j<n;j++){
+            if(arr[j]>arr[i]){
+                arr[i]=arr[j];
+                flag=1;
+                break;
+            }
+        }if(flag==0){
+            arr[i]=-1;
+        }
+    }
+    arr[i]=-1;
+    for(int i=0;i<n;i++){
+        printf("%d ",arr[i]);
+    }
+
+    return 0;
+}
+
+```
+### 54.Write a program to find the kth smallest element in an array.
+```c
+
+```
 
 
 
