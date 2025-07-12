@@ -1146,8 +1146,62 @@ int main(){
 ```
 ### 44. Write a program to check if elements of an array are distinct or not.
 ```c
+#include <stdio.h>
 
+int main()
+{
+    int arr[5]={1,2,3,4,4};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int c;int flag;
+    for(int i=0;i<n;i++){
+        c=0;
+        for(int j=0;j<n;j++){
+            if(arr[i]==arr[j]){
+                c++;
+            }
+        }
+        flag=0;
+        if(c>1){
+            flag=1;
+            break;
+        }
+    }
+    if(flag==0){
+        printf("array is distinct");
+    }else{
+        printf("array is not distinct");
+    }
+
+    return 0;
+}
 ```
+### 45.Write a program to remove duplicate elements from a sorted array.
+```c
+#include <stdio.h>
+
+int main()
+{
+    int arr[6]={1,1,1,1,1,2};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    for(int i=0;i<n-1;i++){
+        if(arr[i]==arr[i+1]){
+            for(int j=i;j<n;j++){
+                arr[j]=arr[j+1];
+            }
+            i--;
+            n=n-1;
+        }
+    }
+    for(int i=0;i<n;i++){
+        printf("%d ",arr[i]);
+    }
+    return 0;
+}
+```
+### 46.Write a program to find out whether a square matrix is symmetric or not. A square matrix is
+### symmetric if the transpose of the matrix is equal to the matrix.
+
+
 
 
 
