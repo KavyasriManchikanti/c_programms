@@ -1497,8 +1497,82 @@ int main()
 ```
 ### 54.Write a program to find the kth smallest element in an array.
 ```c
+#include <stdio.h>
 
+int main()
+{
+    int arr[5]={4,2,9,5,7};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int min=arr[0];
+    int k;
+    scanf("%d",&k);
+    for(int i=0;i<n-1;i++){
+        for(int j=0;j<n-1;j++){
+            if(arr[j]>arr[j+1]){
+                int temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+            }
+        }
+    }
+    if(k>n){
+        printf("invalid");
+    }else
+    printf("%d",arr[k-1]);
+
+    return 0;
+}
 ```
+### 55.Write a program to reverse a portion of an array.
+```c
+#include <stdio.h>
+
+int main()
+{
+    int arr[5]={4,2,9,5,7};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int f;
+    int t;
+    scanf("%d %d",&f,&t);
+    if(f==t || t<f || t>=n || f<0){
+        printf("invalid");
+    }else{
+    while(f<t){
+        int temp=arr[t];
+        arr[t]=arr[f];
+        arr[f]=temp;
+        f++;
+        t--;
+    }
+    for(int i=0;i<n;i++){
+        printf("%d ",arr[i]);
+    }}
+    return 0;
+}
+```
+### Write a program to modify the elements of an array such that the first element becomes
+### the last element of the array and all other elements are shifted towards left.
+### 1 2 3 4 5 6 7 8 9 -> 2 3 4 5 6 7 8 9 1
+```c
+#include <stdio.h>
+
+int main()
+{
+    int arr[9]={1 ,2 ,3 ,4, 5 ,6 ,7 ,8, 9};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int f=arr[0];
+    int i;
+    for(i=1;i<n;i++){
+        arr[i-1]=arr[i];
+    }
+    arr[i-1]=f;
+    for(int i=0;i<n;i++){
+        printf("%d ",arr[i]);
+    }
+    return 0;
+}
+```
+
 
 
 
